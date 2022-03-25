@@ -14,4 +14,4 @@ Work Day Scheduler
 
 ## Project Links
 * https://github.com/Rbenney15/workday-scheduler.git
-* 
+* https://rbenney15.github.io/workday-scheduler/
