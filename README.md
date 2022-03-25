@@ -13,4 +13,5 @@ Work Day Scheduler
 * Current day displayed.
 
 ## Project Links
+* https://github.com/Rbenney15/workday-scheduler.git
 * 
