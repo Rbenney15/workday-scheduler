@@ -4,7 +4,7 @@ Work Day Scheduler
 ![image](https://user-images.githubusercontent.com/98703735/160046548-78085772-ffd7-4408-a971-2c8905e79dc9.png)
 
 ## Description
-* Functional Daily task scheduler
+* A editable weekday scheduler to track daily tasks. 
 
 ## Features
 * Tracks workday hours, changing colors based on past(grey), current(red), future(green).
