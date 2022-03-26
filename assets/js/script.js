@@ -2,6 +2,19 @@
 var today = moment();
 $("#currentDay").text(today.format("dddd, MMMM Do"));
 
+// created tasks objects that will store in localStorage
+var tasks = {
+    "9": [],
+    "10": [],
+    "11": [],
+    "12": [],
+    "13": [],
+    "14": [],
+    "15": [],
+    "16": [],
+    "17": []
+};
+
 var setTasks = function() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -49,4 +62,18 @@ var auditTasks = function() {
         }
     })
 };
+//grab data stored in local storage
+var replaceTextarea = function(textareaElement) {
+    
+    var taskInfo = textareaElement.closest(".task-info");
+    var textArea = taskInfo.find("textarea");
 
+// get the time and task
+    var time = taskInfo.attr("id");
+    var text = textArea.val().trim();
+
+    tasks[time] = [text];
+    setTasks();
+
+    createTask(text, taskInfo);
+}
