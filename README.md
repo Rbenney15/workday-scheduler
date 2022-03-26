@@ -1,7 +1,7 @@
 # workday-scheduler
 Work Day Scheduler
 
-
+![image](https://user-images.githubusercontent.com/98703735/160251335-6ae4386b-4e58-45ab-995d-001489f7cacd.png)
 
 ## Description
 * A editable weekday scheduler to track daily tasks. 
