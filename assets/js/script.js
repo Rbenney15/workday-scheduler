@@ -32,8 +32,7 @@ var getTasks = function() {
             createTask(task, hourDiv);
         })
     }
-
-    // make sure the past/current/future time is reflected
+// make sure the past/current/future time is reflected
     auditTasks()
 }
 
@@ -53,7 +52,7 @@ var auditTasks = function() {
     $(".task-info").each( function() {
         var elementHour = parseInt($(this).attr("id"));
 
-        // handle past, present, and future
+        // change past, present, and future
         if ( elementHour < currentHour ) {
             $(this).removeClass(["present", "future"]).addClass("past");
         }
