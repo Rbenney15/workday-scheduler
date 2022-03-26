@@ -1,8 +1,8 @@
-// set the date at the top of the page
+// set current days date at top of page
 var today = moment();
 $("#currentDay").text(today.format("dddd, MMMM Do"));
 
-// created tasks objects that will store in localStorage
+// time object to stored in localStorage.
 var tasks = {
     "9": [],
     "10": [],
@@ -16,9 +16,11 @@ var tasks = {
 };
 
 var setTasks = function() {
+    // save to local storage
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+//need to load from local storage
 var getTasks = function() {
 
     var loadedTasks = JSON.parse(localStorage.getItem("tasks"));
@@ -31,10 +33,10 @@ var getTasks = function() {
         })
     }
 
-
+    // make sure the past/current/future time is reflected
     auditTasks()
 }
-//create task in specific hour
+
 var createTask = function(taskText, hourDiv) {
 
     var taskDiv = hourDiv.find(".task");
@@ -43,7 +45,8 @@ var createTask = function(taskText, hourDiv) {
         .text(taskText)
     taskDiv.html(taskP);
 }
-// change color of current hour
+
+//change background color based on time of day
 var auditTasks = function() {
 
     var currentHour = moment().hour();
@@ -62,21 +65,24 @@ var auditTasks = function() {
         }
     })
 };
-//grab data stored in local storage
+
 var replaceTextarea = function(textareaElement) {
     
     var taskInfo = textareaElement.closest(".task-info");
     var textArea = taskInfo.find("textarea");
 
-// get the time and task
+    // grab the time and tasks
     var time = taskInfo.attr("id");
     var text = textArea.val().trim();
 
-    tasks[time] = [text];
+    // have the data persist
+    tasks[time] = [text]; 
     setTasks();
 
+    // change the textarea element with a p element
     createTask(text, taskInfo);
 }
+
 // tasks
 $(".task").click(function() {
 
@@ -85,7 +91,6 @@ $(".task").click(function() {
         replaceTextarea($(this));
     })
 
-    // convert to a textarea element if the time hasn't passed
     var time = $(this).closest(".task-info").attr("id");
     if (parseInt(time) >= moment().hour()) {
 
@@ -101,13 +106,13 @@ $(".task").click(function() {
     }
 })
 
-// save button click handler
+// save button
 $(".saveBtn").click(function() {
     replaceTextarea($(this));
 })
 
 // update task backgrounds on the hour
-timeToHour = 3600000 - today.milliseconds();  // check how much time is left until the next hour
+timeToHour = 3600000 - today.milliseconds();
 setTimeout(function() {
     setInterval(auditTasks, 3600000)
 }, timeToHour);
