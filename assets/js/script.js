@@ -77,3 +77,40 @@ var replaceTextarea = function(textareaElement) {
 
     createTask(text, taskInfo);
 }
+// tasks
+$(".task").click(function() {
+
+    // save the other tasks if they've already been clicked
+    $("textarea").each(function() {
+        replaceTextarea($(this));
+    })
+
+    // convert to a textarea element if the time hasn't passed
+    var time = $(this).closest(".task-info").attr("id");
+    if (parseInt(time) >= moment().hour()) {
+
+        // create a textInput element that includes the current task
+        var text = $(this).text();
+        var textInput = $("<textarea>")
+            .addClass("form-control")
+            .val(text);
+
+        // add the textInput element to the parent div
+        $(this).html(textInput);
+        textInput.trigger("focus");
+    }
+})
+
+// save button click handler
+$(".saveBtn").click(function() {
+    replaceTextarea($(this));
+})
+
+// update task backgrounds on the hour
+timeToHour = 3600000 - today.milliseconds();  // check how much time is left until the next hour
+setTimeout(function() {
+    setInterval(auditTasks, 3600000)
+}, timeToHour);
+
+// get the tasks from localStorage on load.
+getTasks();
